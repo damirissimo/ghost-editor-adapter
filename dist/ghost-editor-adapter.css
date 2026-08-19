@@ -1,0 +1,205 @@
+/* Ghost Editor Adapter */
+
+.ghost-editor-adapter {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    min-height: 0;
+    background: #111214;
+    color: #f5f5f5;
+    font: 14px/1.35 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.gea-header {
+    z-index: 2;
+    display: flex;
+    min-height: 56px;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: max(8px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) 8px max(12px, env(safe-area-inset-left));
+    border-bottom: 1px solid rgba(255, 255, 255, .09);
+    background: #17181b;
+}
+
+.gea-title {
+    overflow: hidden;
+    font-size: 15px;
+    font-weight: 650;
+    letter-spacing: -.01em;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.gea-header-actions,
+.gea-button-row,
+.gea-ratios {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.gea-button-row,
+.gea-ratios {
+    flex-wrap: wrap;
+}
+
+.gea-button {
+    appearance: none;
+    min-height: 36px;
+    padding: 7px 11px;
+    border: 1px solid rgba(255, 255, 255, .13);
+    border-radius: 8px;
+    background: #23252a;
+    color: inherit;
+    font: inherit;
+    font-weight: 550;
+    cursor: pointer;
+    touch-action: manipulation;
+}
+
+.gea-button:hover,
+.gea-button:focus-visible,
+.gea-button.is-active {
+    border-color: rgba(255, 255, 255, .32);
+    background: #30333a;
+    outline: none;
+}
+
+.gea-button-primary {
+    border-color: #fff;
+    background: #fff;
+    color: #111214;
+}
+
+.gea-button-primary:hover,
+.gea-button-primary:focus-visible {
+    background: #e8e8e8;
+}
+
+.gea-button:disabled {
+    cursor: wait;
+    opacity: .55;
+}
+
+.gea-workspace {
+    display: grid;
+    flex: 1 1 auto;
+    min-width: 0;
+    min-height: 0;
+    grid-template-columns: minmax(0, 1fr) 292px;
+}
+
+.gea-stage {
+    position: relative;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+    background: #0a0b0d;
+}
+
+.gea-stage cropper-canvas {
+    width: 100%;
+    height: 100%;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.gea-stage cropper-image {
+    will-change: transform, filter;
+}
+
+.gea-controls {
+    min-width: 0;
+    overflow: auto;
+    padding: 14px 14px max(18px, env(safe-area-inset-bottom));
+    border-left: 1px solid rgba(255, 255, 255, .09);
+    background: #17181b;
+    overscroll-behavior: contain;
+}
+
+.gea-group + .gea-group {
+    margin-top: 20px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(255, 255, 255, .08);
+}
+
+.gea-group h3 {
+    margin: 0 0 10px;
+    color: rgba(255, 255, 255, .75);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+.gea-range {
+    display: grid;
+    grid-template-columns: 82px minmax(0, 1fr) 46px;
+    align-items: center;
+    gap: 9px;
+    min-height: 38px;
+}
+
+.gea-range-label {
+    overflow: hidden;
+    color: rgba(255, 255, 255, .82);
+    font-size: 12px;
+    text-overflow: ellipsis;
+}
+
+.gea-range input[type="range"] {
+    width: 100%;
+    accent-color: #fff;
+}
+
+.gea-range output {
+    color: rgba(255, 255, 255, .62);
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+}
+
+@media (max-width: 760px) {
+    .gea-header {
+        min-height: 52px;
+        gap: 8px;
+    }
+
+    .gea-title {
+        display: none;
+    }
+
+    .gea-header-actions {
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+    .gea-workspace {
+        grid-template-columns: 1fr;
+        grid-template-rows: minmax(240px, 1fr) auto;
+    }
+
+    .gea-controls {
+        max-height: 42vh;
+        padding: 12px max(12px, env(safe-area-inset-right)) max(14px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
+        border-top: 1px solid rgba(255, 255, 255, .09);
+        border-left: 0;
+    }
+
+    .gea-group + .gea-group {
+        margin-top: 14px;
+        padding-top: 13px;
+    }
+
+    .gea-range {
+        grid-template-columns: 76px minmax(0, 1fr) 42px;
+    }
+
+    .gea-button {
+        min-height: 38px;
+    }
+}
